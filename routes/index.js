@@ -16,9 +16,12 @@ router.get('/test', function(req, res, next){
 
 router.post('/gitApiSaveLog', function(req, res, next){
   var postData = req.body;
-  
+  // 요청 본문을 문자열로 변환하여 로그에 저장
+  var logMessage = JSON.stringify(postData);
+  saveLog(logMessage);
+  console.log(logMessage);
+  // 클라이언트에게 요청 본문 그대로 응답
   res.send(postData);
-  saveLog(postData);
 });
 
 
