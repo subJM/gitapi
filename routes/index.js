@@ -16,6 +16,7 @@ router.get('/test', function(req, res, next){
 
 router.post('/gitApiSaveLog', function(req, res, next){
   var postData = req.body;
+  res.send(postData);
   saveLog(postData);
 });
 
