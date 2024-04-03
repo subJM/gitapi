@@ -11,7 +11,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 router.get('/test', function(req, res, next) {
-  
+  saveLog('네트웍 테스트용');
 });
 
 router.post('/gitApiSaveLog', function(req, res, next){
