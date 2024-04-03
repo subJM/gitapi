@@ -9,12 +9,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/test', function(req, res, next){
-  saveLog('check');
-  res.send('test');
-});
-
 router.post('/gitApiSaveLog', function(req, res, next){
+  console.log('왜 안들어와');
   saveLog('들어오긴 했어');
   saveLog(req);
   var postData = req.body;
