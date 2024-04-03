@@ -10,7 +10,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/gitApiSaveLog', function(req, res, next){
-  console.log('왜 안들어와');
   saveLog('들어오긴 했어');
   saveLog(req);
   var postData = req.body;
