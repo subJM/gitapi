@@ -13,14 +13,15 @@ const sendMassage = require('../utils/telegram');
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-router.get('/test', function(req, res, next) {
 
-  const sendMessageUrl = `https://api.telegram.org/bot7148869581:AAESpzk-Gk-vBAyKgfr9aiyT5Nk13a21jdA/getUpdates`;
+// router.get('/test', function(req, res, next) {
 
-  var result = axios.get(sendMessageUrl);
-  console.log('result');
-  console.log(result);
-});
+//   const sendMessageUrl = `https://api.telegram.org/bot7148869581:AAESpzk-Gk-vBAyKgfr9aiyT5Nk13a21jdA/getUpdates`;
+
+//   var result = axios.get(sendMessageUrl);
+//   console.log('result');
+//   console.log(result);
+// });
 
 router.post('/gitApiSaveLog', function(req, res, next){
   var postData = req.body;
@@ -30,8 +31,6 @@ router.post('/gitApiSaveLog', function(req, res, next){
   saveLog(logMessage);
 
   const data = postData.head_commit;
-  console.log('data : '+ data);
-  console.log('JSON : '+ JSON.stringify(data));
   const timestamp = new Date(data.timestamp);
   const message = `작성자: ${data.author.name}\n` +
                   `작성자 이메일: ${data.author.email}\n` +
@@ -41,8 +40,6 @@ router.post('/gitApiSaveLog', function(req, res, next){
 
   sendMassage(message);
 
-  // 클라이언트에게 요청 본문 그대로 응답
-  // res.send(logMessage);
 });
 
 
