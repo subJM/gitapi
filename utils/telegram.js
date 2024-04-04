@@ -1,10 +1,7 @@
-
-const fs = require('fs');
-const path = require('path');
+const axios = require('axios');
 
 const chatId = '2131291509';
 const telegramToken = '7148869581:AAESpzk-Gk-vBAyKgfr9aiyT5Nk13a21jdA';
-
 
 // 로그 메시지를 저장하는 함수
 function sendMassage(message) {
