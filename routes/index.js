@@ -32,6 +32,7 @@ router.post('/gitApiSaveLog', function(req, res, next){
                   `작성자 이메일: ${data.author.email}\n` +
                   `배포자: ${data.committer.name}\n` +
                   `배포자 이메일: ${data.committer.email}\n` +
+                  `배포 주소: ${postData.url}\n` +
                   `배포시간: ${formatDate(timestamp)}`;
 
   sendMassage(message);
