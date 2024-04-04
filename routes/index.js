@@ -5,9 +5,9 @@ const axios = require('axios');
 
 // saveLog 함수 가져오기
 const saveLog = require('../utils/logger');
+const sendMassage = require('../utils/telegram');
 
-const chatId = '2131291509';
-const telegramToken = '7148869581:AAESpzk-Gk-vBAyKgfr9aiyT5Nk13a21jdA';
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -27,33 +27,21 @@ router.post('/gitApiSaveLog', function(req, res, next){
   // 요청 본문을 문자열로 변환하여 로그에 저장
   const logMessage = JSON.stringify(postData);
   saveLog('<======================= gitApiSaveLog ==========================>');
-  saveLog(JSON.stringify(postData.head_commit));
+  saveLog(logMessage);
 
   const data = postData.head_commit;
   console.log('data : '+ data);
   console.log('JSON : '+ JSON.stringify(data));
+  const timestamp = new Date(data.timestamp);
   const message = `작성자: ${data.author.name}\n` +
                   `작성자 이메일: ${data.author.email}\n` +
                   `배포자: ${data.committer.name}\n` +
                   `배포자 이메일: ${data.committer.email}\n` +
-                  `배포시간: ${date("Y-m-d H:i:s" , data.timestamp)}`;
+                  `배포시간: ${timestamp}`;
 
-  console.log((message));
+  sendMassage(message);
 
-  axios.post(`https://api.telegram.org/bot${telegramToken}/sendMessage`, { 
-    chat_id: chatId,
-    text: message,
-  })
-  .then(response => {
-    console.log('메시지가 성공적으로 전송되었습니다:', response.data);
-    res.send(response.data);
-  })
-  .catch(error => {
-    console.error('메시지 전송에 실패하였습니다:', error);
-    res.send(error);
-  });
-
-  // // 클라이언트에게 요청 본문 그대로 응답
+  // 클라이언트에게 요청 본문 그대로 응답
   // res.send(logMessage);
 });
 

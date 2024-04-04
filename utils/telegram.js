@@ -1,27 +1,24 @@
 
 const fs = require('fs');
 const path = require('path');
+
+const chatId = '2131291509';
+const telegramToken = '7148869581:AAESpzk-Gk-vBAyKgfr9aiyT5Nk13a21jdA';
+
+
 // 로그 메시지를 저장하는 함수
 function sendMassage(message) {
-  // 현재 날짜를 YYYY-MM-DD 형식으로 포맷
-  const date = new Date();
-  const formattedDate = date.toISOString().split('T')[0];
-
-  // 로그 파일 경로 생성 (예: logs/2023-03-28.log)
-  const logFileName = `${formattedDate}.log`;
-  const logFilePath = path.join(__dirname, '../logs', logFileName);
-
-  // 로그 메시지에 타임스탬프 추가
-  const timestamp = new Date().toISOString();
-  const logMessage = `[${timestamp}] ${message}\n`;
-
-  // 파일에 로그 메시지 추가 (파일이 없으면 생성)
-  fs.appendFile(logFilePath, logMessage, (err) => {
-    if (err) {
-      console.error('로그를 파일에 저장하는데 실패했습니다:', err);
-    } else {
-      console.log('로그가 성공적으로 저장되었습니다:', logMessage);
-    }
+  axios.post(`https://api.telegram.org/bot${telegramToken}/sendMessage`, { 
+    chat_id: chatId,
+    text: message,
+  })
+  .then(response => {
+    console.log('메시지가 성공적으로 전송되었습니다:', response.data);
+    res.send(response.data);
+  })
+  .catch(error => {
+    console.error('메시지 전송에 실패하였습니다:', error);
+    res.send(error);
   });
 }
 
