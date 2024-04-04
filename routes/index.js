@@ -25,13 +25,14 @@ router.get('/test', function(req, res, next) {
 router.post('/gitApiSaveLog', function(req, res, next){
   var postData = req.body;
   // 요청 본문을 문자열로 변환하여 로그에 저장
-  var logMessage = JSON.stringify(postData);
+  const logMessage = JSON.stringify(postData);
   saveLog('<======================= gitApiSaveLog ==========================>');
-  saveLog(logMessage.head_commit);
+  saveLog(JSON.stringify(postData.head_commit));
   saveLog('전체 데이터');
-  saveLog(logMessage);
 
-  const data = logMessage.head_commit;
+  const data = postData.head_commit;
+  console.log('data : '+ data);
+  console.log('JSON : '+ JSON.stringify(data));
   const message = `작성자: ${data.author.name}\n` +
                   `작성자 이메일: ${data.author.email}\n` +
                   `배포자: ${data.committer.name}\n` +
