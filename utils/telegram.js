@@ -2,7 +2,7 @@
 const fs = require('fs');
 const path = require('path');
 // 로그 메시지를 저장하는 함수
-function saveLog(message) {
+function sendMassage(message) {
   // 현재 날짜를 YYYY-MM-DD 형식으로 포맷
   const date = new Date();
   const formattedDate = date.toISOString().split('T')[0];
@@ -25,4 +25,4 @@ function saveLog(message) {
   });
 }
 
-module.exports = saveLog;
+module.exports = sendMassage;
