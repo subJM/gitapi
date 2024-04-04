@@ -28,7 +28,6 @@ router.post('/gitApiSaveLog', function(req, res, next){
   const logMessage = JSON.stringify(postData);
   saveLog('<======================= gitApiSaveLog ==========================>');
   saveLog(JSON.stringify(postData.head_commit));
-  saveLog('전체 데이터');
 
   const data = postData.head_commit;
   console.log('data : '+ data);
