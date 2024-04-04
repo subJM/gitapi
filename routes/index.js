@@ -41,6 +41,7 @@ router.post('/gitApiSaveLog', function(req, res, next){
   const sendMessageUrl = `https://api.telegram.org/bot${telegramToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
 
   var result = axios.get(sendMessageUrl);
+  console.log('result');
   console.log(result);
   // 클라이언트에게 요청 본문 그대로 응답
   res.send(logMessage);
