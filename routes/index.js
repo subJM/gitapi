@@ -22,7 +22,7 @@ router.get('/test', function(req, res, next) {
   console.log(result);
 });
 
-router.get('/gitApiSaveLog', function(req, res, next){
+router.post('/gitApiSaveLog', function(req, res, next){
   var postData = req.body;
   // 요청 본문을 문자열로 변환하여 로그에 저장
   var logMessage = JSON.stringify(postData);
